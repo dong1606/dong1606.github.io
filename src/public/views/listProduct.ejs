@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Product</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="../../../css/listProduct.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.skypack.dev/webrouk-custom-range@latest"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+
+</head>
+
+
+
+
+<%- include("partials/headerCustomer") %>
+
+  <body>
+    <div class="container py-4">
+      <div class="grid grid-cols-1 md:grid-cols-12 h-screen">
+        <div id="filters" class="mb-3 bg-white col-span-3 p-6 relative bg-gray-200 shadow-inner block">
+          <form action="/filter-product" method="get">
+            <input type="" class="search-product" style="display: none;" name="page" placeholder="Name Product"
+              value="1">
+            <input type="" class="search-product" style="display: none;" name="size" placeholder="Name Product"
+              value="10">
+            <div class="country">
+              <legend class="text-base font-medium text-gray-900 my-3">Tên sản phẩm</legend>
+              <input type="" class="search-product" name="productName" placeholder="Name Product">
+            </div>
+
+            <div class="country">
+              <legend class="text-base font-medium text-gray-900 my-3">Loại sản phẩm</legend>
+              <select id="category" name="idCategory"
+                class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <% for ( var i=0; i < category.length; i++ ) { var selected=( filter[0].idCategory==category[i].id )
+                  ? "selected" : "" ; %>
+                  <option value="<%=category[i].id %>" <%=selected %>><%=category[i].name %>
+                  </option>
+                  <% } %>
+              </select>
+            </div>
+
+            <div class="size">
+              <legend class="text-base font-medium text-gray-900 my-3">Khuyến mãi</legend>
+              <div id="size">
+                <% for ( var i=0; i < promotion.length; i++ ) { %>
+                  <div class="flex items-start mb-3">
+                    <div class="flex items-center h-5">
+                      <input name="idPromotion" type="checkbox"
+                        class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                        value="<%=promotion[i].id %>" />
+                    </div>
+                    <div class="ml-3 text-sm">
+                      <label class="font-bold text-gray-700">
+                        <%=promotion[i].name %>
+                      </label>
+                    </div>
+                  </div>
+                  <% } %>
+              </div>
+
+              <div class="price">
+                <legend class="text-base font-medium text-gray-900 my-3">Giá sản phẩm</legend>
+                <!-- <div class="flex"> -->
+                  <div slider id="slider-distance">
+                    <div>
+                      <div inverse-left style="width:70%;"></div>
+                      <div inverse-right style="width:70%;"></div>
+                      <div range style="left:0%;right:0%;"></div>
+                      <span thumb style="left:0%;"></span>
+                      <span thumb style="left:100%;"></span>
+                      <div sign style="left:0;">
+                        <span id="value">0</span>
+                      </div>
+                      <div sign style="left:100%;">
+                        <span id="value">100000000</span>
+                      </div>
+                    </div>
+                    <input type="range" tabindex="0" name="fromPrice" value="0" max="100000000" min="0" step="1000000" oninput="
+                    this.value=Math.min(this.value,this.parentNode.childNodes[5].value-1);
+                    var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
+                    var children = this.parentNode.childNodes[1].childNodes;
+                    children[1].style.width=value+'%';
+                    children[5].style.left=value+'%';
+                    children[7].style.left=value+'%';children[11].style.left=value+'%';
+                    children[11].childNodes[1].innerHTML=this.value;" />
+                   
+                    <input type="range" tabindex="0" name="toPrice" value="100000000" max="100000000" min="0" step="1000000" oninput="
+                    this.value=Math.max(this.value,this.parentNode.childNodes[3].value-(-1));
+                    var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
+                    var children = this.parentNode.childNodes[1].childNodes;
+                    children[3].style.width=(100-value)+'%';
+                    children[5].style.right=(100-value)+'%';
+                    children[9].style.left=value+'%';children[13].style.left=value+'%';
+                    children[13].childNodes[1].innerHTML=this.value;" />
+                  </div>
+                <!-- <div class="price-input">
+                    <input
+                      class="mt-1 focus:ring-indigo-500 p-2 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                      type="number" name="fromPrice" value="" id="price-min" />
+                  </div>
+                  <div class="py-2">&nbsp;-&nbsp;</div>
+                  <div class="price-input">
+                    <input
+                      class="mt-1 p-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                      type="number" name="toPrice" value="" id="price-max" />
+                  </div> -->
+                <!-- <div class="py-2 font-bold">&nbsp;VND&nbsp;</div>
+                </div> -->
+              </div>
+            </div>
+
+            <button type="submit" class=" filterProduct-btn">Lọc</button>
+          </form>
+        </div>
+        <div class="col-span-9 px3 relative">
+          <% if (totalProduct) { %>
+            <div class="total-product">Kết quả : <%=totalProduct[0].total_product%> Sản phẩm
+            </div>
+            <%}%>
+              <div id="goods" class="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 gap-2">
+                <% if (filter) {%>
+                  <% for (var i=0; i < filter.length; i++) { %>
+                    <div class="single-goods">
+                      <div class="border-2 border-gray-200 rounded-lg overflow-hidden mb-3">
+                        <div class="text-center">
+                          <div class="product-img">
+                            <a href="/detailProduct/<%=filter[i].idProduct%>">
+                              <picture>
+                                <img img src="http://localhost:3000/static/image/<%=filter[i].thumbnail%>" alt=""
+                                  class="block mx-auto">
+                              </picture>
+                            </a>
+                            <div class="tietkiem">
+                              <div class="tietkiem-des">
+                                <div class="tietkiem-title">TIẾT KIỆM</div>
+                                <div class="tietkiem-price">
+                                  <%=filter[i].tietkiem%>&nbsp;₫
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="product-name">
+                            <span>
+                              <%=filter[i].productName%>
+                            </span>
+                          </div>
+                          <div class="product-des">
+                            <span>
+                              <%=filter[i].productDescription%>
+                            </span>
+                          </div>
+                          <div class="product-oldprice">
+                            <div class="oldprice">
+                              <%=filter[i].price%> VNĐ
+                            </div>
+                            <div class="percent">
+                              -<%=filter[i].percent%>%
+                            </div>
+                          </div>
+                          <div class="product-price">
+                            <span>
+                              <%=filter[i].newPrice%> VNĐ
+                            </span>
+                          </div>
+
+
+                        </div>
+                      </div>
+                    </div>
+                    <%}%>
+                      <%}%>
+              </div>
+        </div>
+        
+  </body>
+  
+
+</html>

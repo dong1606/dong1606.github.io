@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách Category</title>
+    <link href="../../css/category.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <!--Main Navigation-->
+    <%- include("partials/headerAdmin") %>
+        <main>
+            <div class="pt-4">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="container-xl">
+                            <div class="table-wrapper">
+                                <div class="table-title">
+                                    <div class="row">
+                                        <div class="col-sm-5">
+                                            <h2>Quản lý <b>Loại sản phẩm</b></h2>
+                                        </div>
+                                        <div class="col-sm-7">
+                                            <form class="addProduct-btn" action="/admin/category/add" method="GET">
+                                                <button type="submit"><i class="fa-solid fa-plus"></i></button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <table class="table table-striped table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Thứ tự</th>
+                                            <th>Tên loại sản phẩm</th>
+                                            <th>Mô tả loại sản phẩm</th>
+                                            <th>Ảnh đại diện</th>
+                                            <th>Trạng thái</th>
+                                            <th>Hoạt động</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% if (category) {%>
+                                            <% for (var i=0; i < category.length; i++) { %>
+                                                <tr>
+                                                    <td>
+                                                        <%= (i+1) %>
+                                                    </td>
+                                                    <td>
+                                                        <%=category[i].name%>
+                                                    </td>
+                                                    <td>
+                                                        <%=category[i].description%>
+                                                    </td>
+                                                    <td>
+                                                        <img src="http://localhost:3000/static/image/<%=category[i].thumbnail%>"
+                                                            alt="">
+                                                    </td>
+                                                    <td>
+                                                        <% if(category[i].status==1) {%>
+                                                            <form action="/admin/category/delete/<%= category[i].id %>"
+                                                                method="POST">
+                                                                <button class=" active-btn" type="submit"><i
+                                                                        class="fa-solid fa-check"></i></button>
+                                                            </form>
+
+                                                            <%}else{ %>
+                                                                <form action="/admin/category/active/<%= category[i].id %>"
+                                                                    method="POST">
+                                                                    <button class=" disabled-btn" type="submit"><i
+                                                                            class="fa-solid fa-xmark"></i></button>
+                                                                </form>
+                                                                <%}%>
+                                                    </td>
+                                                    <td class="action">
+
+                                                        <form action="/admin/category/edit/<%= category[i].id %>"
+                                                            method="GET">
+                                                            <button class=" editCategory-btn" type="submit"><i
+                                                                    class="fa-solid fa-pen"></i></button>
+                                                        </form>
+
+                                                        <form action="/admin/category/delete/<%= category[i].id %>"
+                                                            method="GET">
+                                                            <button type="submit" class=" deleteCategory-btn"
+                                                                onclick="return confirm('Bạn có chắc chắn muốn vô hiệu loại sản phẩm này không?')"><i
+                                                                    class="fa-solid fa-trash"></i></button>
+                                                        </form>
+
+                                                    </td>
+                                                </tr>
+                                                <%}%>
+                                                    <%}%>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+</body>
+
+</html>

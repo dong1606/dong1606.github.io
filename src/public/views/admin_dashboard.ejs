@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách Category</title>
+    <link href="../../css/dashboard.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+    <!--Main Navigation-->
+    <%- include("partials/headerAdmin") %>
+        <main>
+            <div class="pt-4">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="cardBox">
+                            <div class="carditem">
+                                <div>
+                                    <div class="numbers">
+                                        <%=totalProduct%>
+                                    </div>
+                                    <div class="cardName">Product</div>
+                                </div>
+                                <div class="iconBx">
+                                    <i class="fa-solid fa-laptop"></i>
+                                </div>
+                            </div>
+                            <div class="carditem">
+                                <div>
+                                    <div class="numbers">
+                                        <%=order[0].totalOrder%>
+                                    </div>
+                                    <div class="cardName">Orders</div>
+                                </div>
+                                <div class="iconBx">
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                </div>
+                            </div>
+                            <div class="carditem">
+                                <div>
+                                    <div class="numbers">
+                                        <%=totalPriceOrder[0].totalPriceOrder%>
+                                    </div>
+                                    <div class="cardName">Earning</div>
+                                </div>
+                                <div class="iconBx">
+                                    <i class="fa-solid fa-money-bill"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="graphBox">
+                            <div class="box">
+                                <h3>Thu nhập theo quý</h3>
+                                <div>
+                                    <canvas id="chart1"></canvas>
+                                </div>
+                            </div>
+                            <div class="box">
+                                <h3>Thu nhập theo năm</h3>
+                                <div>
+                                    <canvas id="myChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <form action="export" method="post">
+                            <button class = "btn-xuat" type="submit">Xuất báo cáo</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+</body>
+<script>
+    Qui1 = '<%=Q1%>'
+    Qui2 = '<%=Q2%>'
+    Qui3 = '<%=Q3%>'
+    Qui4 = '<%=Q4%>'
+    var ctx = document.getElementById('chart1').getContext('2d');
+    var chart1 = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: ['Quý 1', 'Quý 2', 'Quý 3', 'Quý 4'],
+            datasets: [{
+                label: '# of Votes',
+                data: [Qui1, Qui2, Qui3, Qui4],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+<script>
+    month1 = '<%=January%>'
+    month2 = '<%=February%>'
+    month3 = '<%=March%>'
+    month4 = '<%=April%>'
+    month5 = '<%=May%>'
+    month6 = '<%=June%>'
+    month7 = '<%=July%>'
+    month8 = '<%=August%>'
+    month9 = '<%=September%>'
+    month10 = '<%=October%>'
+    month11 = '<%=November%>'
+    month12 = '<%=December%>'
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+            datasets: [{
+                label: 'Earning',
+                data: [month1, month2, month3, month4, month5, month6, month7, month8, month9, month10, month11, month12],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+
+</html>

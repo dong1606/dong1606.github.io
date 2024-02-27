@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Product</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="../../../css/customer_detailOrder.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+
+</head>
+
+<body>
+  <%- include("partials/headerCustomer") %>
+
+    <div class="container">
+        <article class="card">
+            <header class="card-header"> Đơn hàng </header>
+            <div class="card-body">
+                <% if (order) {%>
+                <h6>Mã Order:  <%=order[0].id%></h6>
+                <article class="card">
+                    <div class="card-body row">
+                        <div class="col"> <strong>Ngày đặt hàng: </strong> <br><%=order[0].timeOrder%> </div>
+                        <div class="col"> <strong>Ngày giao:</strong> <br> <%=order[0].timeShip%></div>
+                        <div class="col"> <strong>Tình trạng:</strong> <br> <%=order[0].status==1 ? "Đã xác nhận" : order[0].status==0 ? "Chưa xác nhận" : "Đã hủy" %> </div>
+                    </div>
+                </article>
+                <%if (order[0].status==1){%>
+                <div class="track">
+                    <div class="step active"> <span class="icon"> <i class="fa-solid fa-hourglass-start"></i> </span> <span class="text">Đang chờ xác nhận</span> </div>
+                    <div class="step active"> <span class="icon"> <i class="fa fa-truck"></i></i> </span> <span class="text"> Đang giao</span> </div>
+                    <div class="step"> <span class="icon"> <i class="fa-solid fa-check"></i></span> <span class="text"> Đã giao hàng </span> </div>
+                    <div class="step"> <span class="icon"> <i class="fa-solid fa-x"></i> </span> <span class="text">Đã hủy</span> </div>
+                </div>
+                <%}else if(order[0].status==0){%>
+                    <div class="track">
+                        <div class="step active"> <span class="icon"> <i class="fa-solid fa-hourglass-start"></i> </span> <span class="text">Đang chờ xác nhận</span> </div>
+                        <div class="step"> <span class="icon"> <i class="fa fa-truck"></i></i> </span> <span class="text"> Đang giao</span> </div>
+                        <div class="step"> <span class="icon"> <i class="fa-solid fa-check"></i></span> <span class="text"> Đã giao hàng </span> </div>
+                        <div class="step"> <span class="icon"> <i class="fa-solid fa-x"></i> </span> <span class="text">Đã hủy</span> </div>
+                    </div>
+                <%}else if(order[0].status==-1){%>
+                    <div class="track">
+                        <div class="step active"> <span class="icon"> <i class="fa-solid fa-hourglass-start"></i> </span> <span class="text">Đang chờ xác nhận</span> </div>
+                        <div class="step active"> <span class="icon"> <i class="fa fa-truck"></i></i> </span> <span class="text"> Đang giao</span> </div>
+                        <div class="step active"> <span class="icon"> <i class="fa-solid fa-check"></i> </span> <span class="text"> Đã giao hàng </span> </div>
+                        <div class="step active"> <span class="icon"> <i class="fa-solid fa-x"></i> </span> <span class="text">Đã hủy</span> </div>
+                    </div>
+                <%}%>
+                <hr>
+                <ul class="row">
+                <% for (var i=0; i < order.length; i++) { %>
+                    <li class="col-md-4">
+                        <figure class="itemside mb-3">
+                            <div class="aside"><img src="http://localhost:3000/static/image/<%=order[i].thumbnail%>" class="img-sm border"></div>
+                            <figcaption class="info align-self-center">
+                                <p class="title"><%=order[i].name%><br> <%=order[i].count%></p> <span class="text-muted"><%=order[i].productTotalPrice%> </span>
+                            </figcaption>
+                        </figure>
+                    </li>
+                <hr>
+                <%}%>
+                            <%}%>
+                <a href="/listOrder" class="btn btn-warning" data-abc="true"> <i class="fa fa-chevron-left"></i> Back to orders</a>
+            </div>
+        </article>
+    </div>
+</body>
+
+</html>

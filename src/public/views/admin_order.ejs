@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Danh sách Order</title>
+  <link href="../../css/order.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+  <%- include("partials/headerAdmin") %>
+
+    <main>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="container-xl">
+            <div class="table-responsive">
+              <div class="table-wrapper">
+                <div class="table-title">
+                  <div class="row">
+                    <div class="col-sm-5">
+                      <h2>Quản lý <b>Đơn hàng</b></h2>
+                    </div>
+                    <!-- <div class="col-sm-7">
+                          <form class="addCustomer-btn" action="/order/showCreate" method="GET">
+                            <button type="submit">Thêm</button>
+                          </form> -->
+                  </div>
+                </div>
+              </div>
+              <table class="table table-striped table-hover">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Tên người dùng</th>
+                    <th>Địa chỉ</th>
+                    <th>Số điện thoại</th>
+                    <th>Ngày đặt hàng</th>
+                    <th>Ngày giao hàng</th>
+                    <th>Tổng tiền</th>
+                    <th>Trạng thái</th>
+                    <th>Chi tiết</th>
+                    <th>Hoạt động</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if (order) {%>
+                    <% for (var i=0; i < order.length; i++) { %>
+                      <tr>
+                        <td>
+                          <%=order[i].id %>
+                        </td>
+                        <td>
+                          <%=order[i].userName%>
+                        </td>
+                        <td>
+                          <%=order[i].address%>
+                        </td>
+                        <td>
+                          <%=order[i].phone%>
+                        </td>
+                        <td>
+                          <%=order[i].timeOrder%>
+                        </td>
+                        <td>
+                          <%=order[i].timeShip ? order[i].timeShip : "Chưa giao" %>
+                        </td>
+                        <td>
+                          <%=order[i].totalPrice%>
+                        </td>
+                        <td>
+                          <% if(order[i].status==1) {%>
+                            <div class="xacnhan">Đã xác nhận</div>
+                            <%}else if(order[i].status==0) { %>
+                              <div class="chuaxacnhan">Chưa xác nhận</div>
+                              <%}else{%>
+                                <div class="dahuy">Đã hủy</div>
+                                <%}%>
+                        </td>
+                        <td>
+                          <form action="/admin/order/detailOrder/<%= order[i].id %>" method="GET">
+                            <button class=" detailOrder-btn" type="submit"><i
+                                class="fa-solid fa-clipboard"></i></button>
+                          </form>
+                        </td>
+                        <td class="action">
+
+                          <!-- <form action="active/<%= order[i].id %>" method="GET">
+                                  <button class=" editorder-btn" type="submit">Sửa</button>
+                                </form> -->
+                          <form action="/admin/order/active/<%= order[i].id %>" method="GET">
+                            <button class=" activeOrder-btn" type="submit" data-status="<%= order[i].status %>"><i
+                                class="fa-solid fa-check"></i></button>
+                          </form>
+
+                          <form action="/admin/order/cancel/<%= order[i].id %>" method="GET">
+                            <button type="submit" class=" cancelOrder-btn" data-status="<%= order[i].status %>"
+                              onclick="return confirm('Bạn có chắc chắn muốn xóa order này không?')"><i
+                                class="fa-solid fa-xmark"></i></button>
+                          </form>
+
+                        </td>
+                      </tr>
+                      <%}%>
+                        <%}%>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </main>
+
+</body>
+
+</html>

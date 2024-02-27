@@ -1,0 +1,205 @@
+/* body {
+	background: #eeeeee;
+} */
+
+.form-inline {
+	display: inline-block;
+}
+
+.navbar-header.col {
+	padding: 0 !important;
+}
+
+.navbar {
+	background: #dc3535;
+	padding-left: 16px;
+	padding-right: 16px;
+	border-bottom: 1px solid #d6d6d6;
+	box-shadow: 0 0 4px rgba(0, 0, 0, .1);
+	height: 65px;
+	position: sticky !important;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 100;
+}
+
+a.navbar-brand {
+	font-size: 2.25rem !important;
+}
+
+.nav-link img {
+	border-radius: 50%;
+	width: 36px;
+	height: 36px;
+	margin: -8px 0;
+	float: left;
+	margin-right: 10px;
+}
+
+.navbar .navbar-brand {
+	color: #555;
+	padding-left: 0;
+	padding-right: 50px;
+	font-family: 'Merienda One', sans-serif;
+}
+
+.navbar .navbar-brand i {
+	font-size: 20px;
+	margin-right: 5px;
+}
+
+
+.search-box input {
+	box-shadow: none;
+	padding-right: 35px;
+	border-radius: 3px !important;
+}
+
+
+.navbar .nav-item.nav-link i {
+	font-size: 25px;
+}
+
+.navbar .nav-item.nav-link.inf {
+	font-size: 15px;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.navbar .dropdown-item i {
+	font-size: 16px;
+	min-width: 22px;
+}
+
+.navbar .nav-item.open>a {
+	background: none !important;
+}
+
+.navbar .nav-item.dropdown {
+	font-size: 15px;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.dropdown-menu {
+	border-radius: 1px;
+	border-color: #e5e5e5;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, .05);
+	position: absolute;
+	max-height: 200px;
+	overflow-y: auto;
+	right: 0;
+	top: 100%;
+}
+
+.navbar .dropdown-menu a {
+	color: #777;
+	padding: 8px 20px;
+	line-height: normal;
+}
+
+.navbar .dropdown-menu a:hover,
+.navbar .dropdown-menu a:active {
+	color: #333;
+}
+
+.navbar .dropdown-item .material-icons {
+	font-size: 21px;
+	line-height: 16px;
+	vertical-align: middle;
+	margin-top: -2px;
+}
+
+.navbar .badge {
+	color: #fff;
+	background: #f44336;
+	font-size: 11px;
+	border-radius: 20px;
+	position: absolute;
+	min-width: 10px;
+	padding: 4px 6px 0;
+	min-height: 18px;
+	top: 5px;
+}
+
+.navbar a.notifications,
+.navbar a.messages {
+	position: relative;
+	margin-right: 10px;
+}
+
+.navbar a.messages {
+	margin-right: 20px;
+}
+
+.navbar a.notifications .badge {
+	margin-left: -8px;
+}
+
+.navbar a.messages .badge {
+	margin-left: -4px;
+}
+
+.navbar .active a,
+.navbar .active a:hover,
+.navbar .active a:focus {
+	background: transparent !important;
+}
+
+@media (min-width: 1200px) {
+	.form-inline .input-group {
+		width: 300px;
+		margin-left: 30px;
+	}
+}
+
+@media (max-width: 1199px) {
+	.form-inline {
+		display: block;
+		margin-bottom: 10px;
+	}
+
+	.input-group {
+		width: 100%;
+	}
+}
+
+.btn-cart {}
+
+/* Navbar */
+.navbar {
+	@apply shadow-sm;
+}
+
+.navbar-brand {
+	@apply font-weight-bold;
+}
+
+/* Menu item */
+.nav-item.active {
+	@apply bg-gray-100;
+}
+
+.nav-item {
+	@apply px-3;
+}
+
+/* Dropdown menu */
+.dropdown-menu {
+	@apply border rounded-md shadow-sm;
+}
+
+.dropdown-item {
+	@apply px-3 py-2;
+}
+
+/* Cart icon */
+.header__cart-icon {
+	@apply fa-lg;
+}
+
+/* User dropdown */
+.user-action {
+	@apply font-weight-bold;
+}

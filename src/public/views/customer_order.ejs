@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Order</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="../css/customer_order.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+
+<body>
+  <%- include("partials/headerCustomer") %>
+    <section class="h-100" style="background-color: #eee;">
+      <div class="container h-100 py-5">
+        <div class="cart-page.container">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-10">
+              <form action="/addOrder" method="post">
+                <div class="title-product"> THÔNG TIN SẢN PHẨM</div>
+                <% if (cart) {%>
+                  <% for (var i=0; i < cart.length; i++) { %>
+                    <div class="product">
+                      <input type="number" name="idProduct" id="idProduct" value="<%=cart[i].idProduct%>" hidden="true">
+                      <input type="number" name="count" id="count" value="<%=cart[i].count%>" hidden="true">
+                      <input type="number" name="price" id="price" value="<%=cart[i].cartPrice%>" hidden="true">
+                      <span class="tit-product">Tên sản phẩm</span>
+                      <div class="inf_product">
+                        <%=cart[i].productName%>
+                      </div>
+                      <span class="tit-product">Giá tiền</span>
+                      <div class="inf_product">
+                        <%=cartPrice%>
+                      </div>
+                      <span class="tit-product">Số lượng</span>
+                      <div class="inf_product">
+                        <%=cart[i].count%>
+                      </div>
+                      <span class="tit-product">Tổng tiền</span>
+                      <div class="inf_product">
+                        <%=productTotalPrice%>
+                      </div>
+                    </div>
+                    <%}%>
+                    <%}%>
+                    <input type="number" name="totalPrice" id="totalPrice" value="<%=totalPrice%>" hidden="true">
+                    <div class="title-product"> TỔNG TIỀN ĐƠN HÀNG <%=totalPrice%>
+                    </div>
+                        <div class="title-product"> THANH TOÁN</div>
+                        <div class="payment">
+                          <select id="id" name="idPayment">
+                            <% if (payment) {%>
+                              <% for (var i=0; i < payment.length; i++) { %>
+                                <option value="<%=payment[i].id %>">
+                                  <%=payment[i].typeOfPayment%>
+                                </option>
+                                <% } %>
+                                  <% } %>
+                          </select>
+                        </div>
+                        <img src="../images/logo/QR.jpg" alt="">
+                        <div class="title-product">Thông tin nhận hàng</div>
+                        <div class="delivery">
+                          <div class="tit-product">Tên người nhận</div>
+                          <input type="text" name="name" id="price" class="form-control"
+                          required="required">
+                          <div class="tit-product">Địa chỉ nhận hàng</div>
+                          <input type="text" name="deliveryAddress" id="deliveryAddress"  class="form-control"
+                          required="required">
+                        </div>
+                        <div class="card">
+                          <div class="card-body">
+                            <button type="submit" class="btn btn-warning btn-block btn-lg">Thanh toán</button>
+                          </div>
+                        </div>
+            </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+    <%- include("partials/footer") %>
+</body>
+
+</html>

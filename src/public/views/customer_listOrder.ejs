@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Danh sách Order</title>
+  <link href="../../css/listOrder.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+  <%- include("partials/headerCustomer") %>
+    <main>
+      <div class="pt-4">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="container-xl">
+              <div class="table-responsive">
+                <div class="table-wrapper">
+                  <div class="table-title">
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <h2>Danh sách <b>Đơn hàng</b></h2>
+                      </div>
+                      <!-- <div class="col-sm-7">
+                          <form class="addCustomer-btn" action="/order/showCreate" method="GET">
+                            <button type="submit">Thêm</button>
+                          </form> -->
+                    </div>
+                  </div>
+                </div>
+                <table class="table table-striped table-hover">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Tên người dùng</th>
+                      <th>Địa chỉ</th>
+                      <th>Số điện thoại</th>
+                      <th>Ngày đặt hàng</th>
+                      <th>Ngày giao hàng</th>
+                      <th>Tổng tiền</th>
+                      <th>Trạng thái</th>
+                      <th>Chi tiết</th>
+                      <th>Hoạt động</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% if (order) {%>
+                      <% for (var i=0; i < order.length; i++) { %>
+                        <tr>
+                          <td>
+                            <%=order[i].id %>
+                          </td>
+                          <td>
+                            <%=order[i].userName%>
+                          </td>
+                          <td>
+                            <%=order[i].address%>
+                          </td>
+                          <td>
+                            <%=order[i].phone%>
+                          </td>
+                          <td>
+                            <%=order[i].timeOrder%>
+                          </td>
+                          <td>
+                            <%=order[i].timeShip ? order[i].timeShip : "Chưa giao" %>
+                          </td>
+                          <td>
+                            <%=order[i].totalPrice%>
+                          </td>
+                          <td>
+                            <%=order[i].status==1 ? "Đã xác nhận" : order[i].status==0 ? "Chưa xác nhận" : "Đã hủy" %>
+                          </td>
+                          <td>
+                            <form action="/detailOrder/<%= order[i].id %>" method="GET">
+                              <button class=" detailOrder-btn" type="submit"><i
+                                  class="fa-solid fa-clipboard"></i></button>
+                            </form>
+
+                          </td>
+                          <td>
+                            <form action="/cancel/<%= order[i].id %>" method="GET">
+                              <button type="submit" class=" cancelOrder-btn" data-status="<%= order[i].status %>"
+                                onclick="return confirm('Bạn có chắc chắn muốn xóa order này không?')"><i
+                                  class="fa-solid fa-trash"></i></button>
+                            </form>
+
+                          </td>
+                        </tr>
+                        <%}%>
+                          <%}%>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </main>
+
+</body>
+
+</html>

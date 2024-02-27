@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Product</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="../css/customer_cart.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+
+<body>
+  <%- include("partials/headerCustomer") %>
+    <section class="h-100" style="background-color: #eee;">
+      <div class="container h-100 py-5">
+        <div class="cart-page.container">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-10">
+              <div class="d-flex justify-content-between align-items-center mb-4">
+                <h3 class="fw-normal mb-0 text-black">Giỏ hàng</h3>
+              </div>
+              <% if (cart) {%>
+                <% for (var i=0; i < cart.length; i++) { %>
+                  <div class="card rounded-3 mb-4">
+                    <div class="card-body p-4">
+                      <div class="row d-flex justify-content-between align-items-center">
+                        <div class="col-md-2 col-lg-2 col-xl-2">
+                          <img src="http://localhost:3000/static/image/<%=cart[i].thumbnail%>"
+                            class="img-fluid rounded-3" alt="Cotton T-shirt">
+                        </div>
+                        <input type="number" name="idProduct" id="name" value="<%=cart[i].idProduct%>" hidden="true">
+                        <div class="col-md-3 col-lg-3 col-xl-3">
+                          <p class="product-name">
+                            <%=cart[i].productName%>
+                          </p>
+                          <p><span class="product-des">
+                              <%=cart[i].productDescription%>
+                          </p>
+                        </div>
+
+                        <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                          <div class="count">
+                          <form action='/updateItem/<%=cart[i].idCart%>/<%=cart[i].idProduct%>' method="POST">
+                            <button class="btn btn-link px-2"
+                              onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                              <i class="fas fa-minus"></i>
+                            </button>
+
+                            <input min="0" max="<%=cart[i].quantity%>" name="count" onchange="this.form.submit()" id="count" value="<%=cart[i].count%>" type="number"
+                              class="form-control form-control-sm" />
+
+                            <button class="btn btn-link px-2"
+                              onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                              <i class="fas fa-plus"></i>
+                            </button>
+                          </form>
+                        </div>
+                        </div>
+
+                        <div class="col-md-3 ">
+                          <span>Giá tiền</span>
+                          <h5 class="mb-0">
+                            <%=cart[i].formatCartPrice%>
+                          </h5>
+                          <span>Tổng tiền</span>
+                          <h5 class="mb-0" name="totalPrice">
+                            <%=cart[i].formatTotalPrice%>
+                          </h5>
+                          <input type="number" name="totalPrice" id="totalPrice" value="<%=cart[i].productTotalPrice%>"
+                            hidden="true">
+                        </div>
+                        <form action="/deleteItem/<%= cart[i].idCartItem %>" method="GET">
+                          <button type="submit" class=" deleteProduct-btn"
+                            onclick="return confirm('Bạn có chắc chắn muốn xóa product này không?')"><i class="fa-solid fa-trash"></i></button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                  <%}%>
+                    <%}%>
+                    <form action="/showOrder/<%= cart[0].idCart%>" method="GET">
+                    <div class="card">
+                      <div class="card-body">
+                        <button type="submit" class="btn btn-warning btn-block btn-lg">Thanh toán</button>
+                      </div>
+                  </div>
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <%- include("partials/footer") %>
+</body>
+
+</html>

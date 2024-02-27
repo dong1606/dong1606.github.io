@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Danh sách customer</title>
+  <link href="../../css/customer.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+  <%- include("partials/headerAdmin") %>
+
+    <main>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="container-xl">
+            <div class="table-responsive">
+              <div class="table-wrapper">
+                <div class="table-title">
+                  <div class="row">
+                    <div class="col-sm-5">
+                      <h2>Quản lý <b>khách hàng</b></h2>
+                    </div>
+                    <!-- <div class="col-sm-7">
+                          <form class="addCustomer-btn" action="/customer/showCreate" method="GET">
+                            <button type="submit">Thêm</button>
+                          </form> -->
+                  </div>
+                </div>
+              </div>
+              <table class="table table-striped table-hover">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Tên đăng nhập</th>
+                    <th>Họ và tên</th>
+                    <th>Số điện thoại</th>
+                    <th>Địa chỉ</th>
+                    <th>Trạng thái</th>
+                    <th>Hoạt động</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if (customer) {%>
+                    <% for (var i=0; i < customer.length; i++) { %>
+                      <tr>
+                        <td>
+                          <%= (i+1) %>
+                        </td>
+                        <td>
+                          <%=customer[i].userName%>
+                        </td>
+
+                        <td>
+                          <%=customer[i].fullName%>
+                        </td>
+                        <td>
+                          <%=customer[i].phone%>
+                        </td>
+                        <td>
+                          <%=customer[i].address%>
+                        </td>
+                        <td>
+                          <% if(customer[i].status==1) {%>
+                            <i class="fa-solid fa-check"></i>
+                          <%}else{ %>
+                            <i class="fa-solid fa-xmark"></i>
+                            <%}%>
+                        </td>
+                        <td>
+
+                          <!-- <form action="edit/<%= customer[i].id %>" method="GET">
+                                  <button class=" editCustomer-btn" type="submit">Sửa</button>
+                                </form> -->
+
+                          <form action="/admin/customer/delete/<%= customer[i].id %>" method="post">
+                            <button type="submit" class=" deleteCustomer-btn"
+                              onclick="return confirm('Bạn có chắc chắn muốn xóa customer này không?')"><i class="fa-solid fa-trash"></i></button>
+                          </form>
+
+                        </td>
+                      </tr>
+                      <%}%>
+                        <%}%>
+                </tbody>
+              </table>
+              <!-- <div class="clearfix">
+                <div class="hint-text">Showing <b>number</b> out of <b>number</b> entries</div>
+                <ul class="pagination">
+                  <li class="page-item disabled"><a href="#">Previous</a></li>
+                  <li class="page-item"><a href="#" class="page-link">1</a></li>
+                  <li class="page-item"><a href="#" class="page-link">2</a></li>
+                  <li class="page-item active"><a href="#" class="page-link">3</a></li>
+                  <li class="page-item"><a href="#" class="page-link">4</a></li>
+                  <li class="page-item"><a href="#" class="page-link">5</a></li>
+                  <li class="page-item"><a href="#" class="page-link">Next</a></li>
+                </ul>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+</body>
+
+</html>

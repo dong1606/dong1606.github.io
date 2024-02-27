@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Danh sách product</title>
+  <link href="../../css/product.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+  <!--Main Navigation-->
+  <%- include("partials/headerAdmin") %>
+  <main>
+    <div class="pt-4">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="container-xl">
+            <div class="table-wrapper">
+              <div class="table-title">
+                <div class="row">
+                  <div class="col-sm-5">
+                    <h2>Quản lý <b>Sản phẩm</b></h2>
+                  </div>
+                  <div class="col-sm-7">
+                    <form class="addProduct-btn" action="/admin/product/add" method="GET">
+                      <button type="submit"><i class="fa-solid fa-plus"></i></button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <table class="table table-striped table-hover">
+                <thead>
+                  <tr>
+                    <th>Thứ tự</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Ảnh đại diện</th>
+                    <th>Giá sản phẩm</th>
+                    <th>Tên ưu đãi</th>
+                    <th>Tên loại</th>
+                    <th>Số lượng</th>
+                    <th>Trạng thái</th>
+                    <th>Hoạt động</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if (product) {%>
+                    <% for (var i=0; i < product.length; i++) { %>
+                      <tr>
+                        <td>
+                          <%= (i+1) %>
+                        </td>
+                        <td>
+                          <%=product[i].name%>
+                        </td>
+
+                        <td>
+                          <img src="http://localhost:3000/static/image/<%=product[i].thumbnail%>" alt="">
+                        </td>
+                        <td>
+                          <%=product[i].price%>
+                        </td>
+                        <td>
+                          <%=product[i].promotionName%>
+                        </td>
+                        <td>
+                          <%=product[i].categoryName%>
+                        </td>
+                        <td>
+                          <%=product[i].quantity%>
+                        </td>
+                        <td>
+                          <% if(product[i].status==1) {%>
+                            <form action="/admin/product/delete/<%= product[i].id %>" method="GET">
+                              <button class=" active-btn" type="submit"><i class="fa-solid fa-check"></i></button>
+                            </form>
+                            
+                          <%}else{ %>
+                            <form action="/admin/product/active/<%= product[i].id %>" method="POST">
+                              <button class=" disabled-btn" type="submit"><i class="fa-solid fa-xmark"></i></button>
+                            </form>
+                            <%}%>
+                        </td>
+                        <td class="action">
+
+                          <form action="/admin/product/edit/<%= product[i].id %>" method="GET">
+                            <button class=" editProduct-btn" type="submit"><i class="fa-solid fa-pen"></i></button>
+                          </form>
+
+                          <form action="/admin/product/delete/<%= product[i].id %>" method="GET">
+                            <button type="submit" class=" deleteProduct-btn"
+                              onclick="return confirm('Bạn có chắc chắn muốn xóa product này không?')"><i class="fa-solid fa-trash"></i></button>
+                          </form>
+
+                        </td>
+                      </tr>
+                      <%}%>
+                        <%}%>
+                </tbody>
+              </table>
+              
+            </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </main>
+</body>
+</html>

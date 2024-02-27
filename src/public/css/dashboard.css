@@ -1,0 +1,68 @@
+.cardBox{
+    position: relative;
+    width: 100%;
+    padding:20px;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-gap: 30px;
+}
+.cardBox .carditem{
+    position: relative;
+    background: var(--white);
+    padding: 30px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+}
+.cardBox .carditem .numbers{
+    position: relative;
+    font-weight: 500;
+    font-size: 2.5em;
+    color:blue
+}
+.cardBox .carditem .cardName{
+    color: var(--black2);
+    font-size: 1.1em;
+    margin-top: 5px;
+}
+.cardBox .carditem .iconBx{
+    font-size: 3.5em;
+    color: var(--black2);
+}
+.graphBox{
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 30px;
+    min-height: 200px;
+}
+.graphBox .box{
+    position: relative;
+    background: #fff;
+    padding: 20px;
+    width: 100%;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+}
+
+@media (max-width:991px){
+    .graphBox{
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+}
+.btn-xuat{
+    background-color: green;
+  color: #fff;
+  font-size: 10px;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  width: 80px;
+  float: right;
+  margin-right: 30px;
+}

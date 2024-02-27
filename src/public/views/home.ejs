@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Trang chủ</title>
+  <link href="../../css/home.css" rel="stylesheet">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="../css/font-awesome-4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+  <%- include("partials/headerCustomer") %>
+    <div class="container">
+      <div class="main-advertisement">
+        <picture>
+          <img src="https://cdn2.f-cdn.com/contestentries/1414523/974321/5b9b47a565e42_thumb900.jpg" alt=""
+            class="main-advertisement-img">
+        </picture>
+      </div>
+      <div class="quick-link">
+        <div>
+          <% if (category) {%>
+            <% for (var i=0; i < category.length; i++) { %>
+              <a href="/filter-product?page=1&size=10&productName=&idCategory=<%=category[i].id%>&fromPrice=1&toPrice=100000000"
+                data-index="0" class="box-quicklink__item bd-radius quicklink-logo">
+                <img src="http://localhost:3000/static/image/<%=category[i].thumbnail%>" height="25" class="no-text">
+              </a>
+              <%}%>
+                <%}%>
+        </div>
+      </div>
+      <div class="gird">
+        <div class="gird_row">
+          <div class="gird__col-2">
+            <div class="sub-advertisement">
+              <picture>
+                <img
+                  src="https://product.hstatic.net/1000167396/product/7430_9ca76b8634e548b3b6ed2bf1efa28e88_grande.png"
+                  alt="" class="sub-advertisement-img">
+              </picture>
+            </div>
+          </div>
+          <div class="gird__col-10">
+            <div class="container-products">
+              <div class="list-product">
+                <i class="fa-solid fa-fire"></i> SẢN PHẨM HOT
+              </div>
+              <form action="/cart/addItem" method="POST" enctype="multipart/form-data">
+                <div class="gird_row">
+                  <% if (product) {%>
+                    <% for (var i=0; i < product.length; i++) { %>
+                      <div class="gird__col-25">
+                        <div class="container-products-items">
+                          <div class="container-products-items__img">
+                            <a href="/detailProduct/<%=product[i].idProduct%>">
+                              <picture>
+                                <img img src="http://localhost:3000/static/image/<%=product[i].thumbnail%>" alt=""
+                                  class="container-items__img-first">
+                              </picture>
+                            </a>
+                            <div class="tietkiem">
+                              <div class="tietkiem-des">
+                                <div class="tietkiem-title">TIẾT KIỆM</div>
+                                <div class="tietkiem-price">
+                                  <%=product[i].tietkiem%>&nbsp;₫
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="container-items-brand">
+                            <span class="brand">
+                              <%=product[i].name%>
+                            </span>
+                          </div>
+                          <a href="/detailProduct/<%=product[i].idProduct%>" class="container-items-name">
+                            <%=product[i].description%>
+                          </a>
+                          <div class="product-oldprice">
+                            <div class="oldprice">
+                              <%=product[i].price%>
+                            </div>
+                            <div class="percent">
+                              -<%=product[i].percent%>%
+                            </div>
+                          </div>
+                          <div class="container-items-price">
+                            <span class="container-items-newprice">
+                              <%=product[i].newPrice%>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                      <%}%>
+                        <%}%>
+                </div>
+              </form>
+            </div>
+            <% for (var i=0; i < category.length; i++) { %>
+              <div class="container-products category-product">
+                <div class="list-product">
+                  <%= category[i].name %>
+                </div>
+                <div class="gird_row">
+                  <% for (var j=0; j < arrayProduct[i].length; j++) { %>
+                    <div class="gird__col-25">
+                      <div class="container-products-items">
+                        <div class="container-products-items__img">
+                          <a href="/detailProduct/<%=arrayProduct[i][j].idProduct %>">
+                            <picture>
+                              <img img src='http://localhost:3000/static/image/<%=arrayProduct[i][j].thumbnail %>'
+                                alt="" class="container-items__img-first" />
+                            </picture>
+                          </a>
+                        </div>
+                        <div class="container-items-brand">
+                          <span class="brand">
+                            <%=arrayProduct[i][j].name %>
+                          </span>
+                        </div>
+                        <a href="/detailProduct/<%=arrayProduct[i][j].idProduct %>" class="container-items-name">
+                          <%=arrayProduct[i][j].description %>
+                        </a>
+                        <div class="container-items-price">
+                          <span class="container-items-newprice">
+                            <%=arrayProduct[i][j].price %>
+                          </span>
+
+                        </div>
+
+                      </div>
+                    </div>
+                    <% } %>
+                </div>
+              </div>
+              <% } %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%- include("partials/footer") %>
+</body>
+
+</html>

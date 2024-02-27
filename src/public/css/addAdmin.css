@@ -1,0 +1,50 @@
+
+.addAdmin-form {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.addAdmin-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.addAdmin-form p.hint-text {
+  text-align: center;
+  font-style: italic;
+}
+
+.addAdmin-form .form-group {
+  margin-bottom: 15px;
+}
+
+.addAdmin-form .form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.addAdmin-form .form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.addAdmin-form .form-group input[type="file"] {
+  width: 50%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.addAdmin-form .form-group button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

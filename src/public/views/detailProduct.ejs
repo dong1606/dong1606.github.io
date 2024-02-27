@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Trang chủ</title>
+    <link href="../../css/detailProduct.css" rel="stylesheet">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="../css/font-awesome-4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <%- include("partials/headerCustomer") %>
+        <div class="product-wrapper">
+            <form action="/addItem/<%=product[0].idProduct%>" method="POST">
+                <section class="product-content">
+                    <div class="product-content-heading">
+                        <div class="product-name">
+                            <h1>
+                                <%=product[0].name%> <span>
+                                        <%=product[0].description%>
+                                    </span>
+                            </h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <picture>
+                                <img img src="http://localhost:3000/static/image/<%=product[0].thumbnail%>" alt=""
+                                    class="img-main">
+                            </picture>
+                        </div>
+                        <div class="col-lg-8 has-border">
+                            <div class="product-infomation">
+                                <div class="row">
+                                    <input type="text" name="price" id="name" value="<%=product[0].price%>"
+                                        hidden="true">
+                                    <input type="number" name="idCategory" id="idCategory"
+                                        value="<%=product[0].idCategory%>" hidden="true">
+                                    <input type="text" name="totalPrice" id="name" value="<%=product[0].price%>"
+                                        hidden="true">
+                                    <div class="col-lg-8" style="border-right: 1px solid rgb(236, 236, 236);">
+                                        <div class="specifications">
+                                            <div class="price"><span class="price-discount">
+                                                    <%=price%> VNĐ
+                                                </span> </div>
+                                            <ul class="product__info">
+                                                <li>
+                                                    <div><img
+                                                            src="https://lapvip.vn/html-viettech/images/iconproductinfo.png"
+                                                            alt="xxx" class="lazy"> <span><strong>CPU: </strong>
+                                                            <span>
+                                                                <%=product[0].cpu%>
+                                                            </span></span></div>
+                                                </li>
+                                                <li>
+                                                    <div><img
+                                                            src="https://lapvip.vn/html-viettech/images/iconproductinfo.png"
+                                                            alt="xxx" class="lazy"> <span><strong>Ram: </strong>
+                                                            <span>
+                                                                <%=product[0].ram%>
+                                                            </span></span></div>
+                                                </li>
+                                                <li>
+                                                    <div><img
+                                                            src="https://lapvip.vn/html-viettech/images/iconproductinfo.png"
+                                                            alt="xxx" class="lazy"> <span><strong>Ổ cứng: </strong>
+                                                            <span>
+                                                                <%=product[0].hardDrive%>
+                                                            </span></span></div>
+                                                </li>
+                                                <li>
+                                                    <div><img
+                                                            src="https://lapvip.vn/html-viettech/images/iconproductinfo.png"
+                                                            alt="xxx" class="lazy"> <span><strong>Màn hình: </strong>
+                                                            <span>
+                                                                <%=product[0].screen%>
+                                                            </span></span></div>
+                                                </li>
+                                                <li>
+                                                    <div><img
+                                                            src="https://lapvip.vn/html-viettech/images/iconproductinfo.png"
+                                                            alt="xxx" class="lazy"> <span><strong>Card đồ hoạ: </strong>
+                                                            <span>
+                                                                <%=product[0].card%>
+                                                            </span></span></div>
+                                                </li>
+                                                <li>
+                                                    <div><img
+                                                            src="https://lapvip.vn/html-viettech/images/iconproductinfo.png"
+                                                            alt="xxx" class="lazy"> <span><strong>Tình trạng: </strong>
+                                                            <span>Hàng New, Nhập Khẩu</span></span></div>
+                                                </li>
+                                                <li>
+                                                    <div><img
+                                                            src="https://lapvip.vn/html-viettech/images/iconproductinfo.png"
+                                                            alt="xxx" class="lazy"> <span><strong>Số lượng: </strong>
+                                                            <span>
+                                                                <%=product[0].quantity%>
+                                                            </span></span></div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="elm__head"
+                                            style="display: inline-block; background: rgb(22, 156, 44); border-radius: 4px; padding: 2px 5px;  width: 110px; height: 25px; color: white; position: relative; top: 15px; left: 30px;">
+                                            <div class="box__title"><img
+                                                    src="https://lapvip.vn/html-viettech/images/gift-content.png"
+                                                    alt="giff content" style="float: left;" class="lazy">
+                                                <p class="title">QUÀ TẶNG</p>
+                                            </div>
+                                        </div>
+                                        <div class="box__sale">
+                                            <div class="elm__head"></div>
+                                            <ul class="elm__content">
+                                                <li>
+                                                    Balo hoặc túi chống sốc</li>
+                                                <li>
+                                                    Chuột không dây Dareu LM106G + Bàn di chuột</li>
+                                                <li>
+                                                    Giảm 20% khi mua phụ kiện tại Lapvip</li>
+                                                <li>
+                                                    Giao máy 30P nội thành, miễn phí vận chuyển toàn quốc</li>
+                                                <li>
+                                                    Miễn phí cài đặt phần mềm, vệ sinh máy trong suốt thời gian sử dụng
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="buy-now"><button type="btn" class="btn btn-block" data-quantity="<%=product[0].quantity%>"
+                                                style="background: rgb(237, 193, 54);"><img
+                                                    src="https://lapvip.vn/html-viettech/images/icon-shopping-cart.png"
+                                                    alt="" class="lazy">Mua ngay
+                                            </button></div>
+                                        <div class="buy-now"><button type="btn" id="addToCartButton"data-quantity="<%=product[0].quantity%>"
+                                                class="btn btn-block"><img
+                                                    src="https://lapvip.vn/html-viettech/images/icon-shopping-cart.png"
+                                                    alt="" class="lazy">Thêm vào giỏ hàng
+                                            </button></div>
+                                        <p class="text-center"
+                                            style="color: rgb(102, 102, 102); float: left; margin-left: 10%;">
+                                            Gọi<strong style="color: rgb(208, 2, 27);"> 0986744591 </strong> để được tư
+                                            vấn mua hàng ( Miễn phí)</p>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="product-policy">
+                                            <div class="product-policy-info">
+                                                <div class="title">LAPTOPDONG cam kết :</div>
+                                                <blockquote>
+                                                    <p><span style="line-height: 2;"><span
+                                                                style="font-size: 14px;"><span
+                                                                    style="color: rgb(14, 14, 14);"><span
+                                                                        style="font-family: SFProText;"><img alt=""
+                                                                            src="../images/logo/arrow.png"
+                                                                            class="lazy">&nbsp;&nbsp;Bảo hành
+                                                                        12&nbsp;tháng&nbsp;<br> <img alt=""
+                                                                            src="../images/logo/arrow.png"
+                                                                            class="lazy">&nbsp; 1 đổi 1 30 ngày đầu sử
+                                                                        dụng<br> <img alt=""
+                                                                            src="../images/logo/arrow.png"
+                                                                            class="lazy">&nbsp; Giao
+                                                                        hàng miễn phí toàn
+                                                                        quốc&nbsp;<br> <img alt=""
+                                                                            src="../images/logo/arrow.png"
+                                                                            class="lazy">&nbsp; Trả góp 0% qua thẻ
+                                                                        visa&nbsp;<br> <img alt=""
+                                                                            src="../images/logo/arrow.png"
+                                                                            class="lazy">&nbsp; Hỗ trợ phần mềm trọn
+                                                                        đời<br>
+                                                                        <img alt="" src="../images/logo/arrow.png"
+                                                                            class="lazy">&nbsp; Vệ sinh máy
+                                                                        miễn
+                                                                        phí&nbsp;</span></span></span></span></p>
+                                                </blockquote>
+                                                <div class="memorize_new_word_loading">&nbsp;</div>
+                                                <div class="bv-shadow-dom bv-shadow-dom-fade_out">&nbsp;</div>
+                                            </div>
+                                            <div class="block-box-support">
+                                                <div class="title-box-sp">
+                                                    <p class="txt-title-box-sp">Hỗ trợ trực tuyến</p>
+                                                </div>
+                                                <div class="layout-box-support">
+                                                    <div class="list-user-support">
+                                                        <div class="item-user-support">
+                                                            <div class="avatar"><img src="../images/logo/logo.jpg"
+                                                                    alt="Tư vấn: Lê Thường" class="lazy"></div>
+                                                            <div class="content-item-user-sp">
+                                                                <p><span class="name">Tư vấn: Quang Đông</span></p>
+                                                                <p>Liên hệ
+                                                                    <a href="tel:0986744591" class="phone">:
+                                                                        0986744591</a>
+                                                                </p>
+                                                                <p><a href="mailto:" class="mail"></a></p>
+                                                                <div class="list-contact-mxh"><a
+                                                                        href="https://www.facebook.com/profile.php?viewas=100000686899395&id=100009197418592"
+                                                                        target="_blank"
+                                                                        class="btn-mxh facebook">Facebook</a> <a
+                                                                        href="http://zalo.me/0986744591" target="_blank"
+                                                                        class="btn-mxh zalo">Zalo
+                                                                        me!</a></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="list-info-box-support">
+                                                        <div class="item-info-box-support"><span class="icon"><img
+                                                                    src="../images/logo/location.png" alt="phone"
+                                                                    class="lazy"></span>
+                                                            <div class="content-info-support"><a href="tel:0986744591"
+                                                                    class="txt-info-sp">0986.744.591</a></div>
+                                                        </div>
+                                                        <div class="item-info-box-support"><span class="icon"><img
+                                                                    src="../images/logo/location.png" alt="email"
+                                                                    class="lazy"></span>
+                                                            <div class="content-info-support"><a
+                                                                    href="mailto:cskh@laptopDong.com.vn"
+                                                                    class="txt-info-sp mail-sp">cskh@laptopDong.com.vn</a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="item-info-box-support"><span class="icon"><img
+                                                                    src="../images/logo/location.png" alt="address"
+                                                                    class="lazy"></span>
+                                                            <div class="content-info-support">
+                                                                <p class="txt-info-sp">186 Võ Thị Sáu,
+                                                                    Quận 10, TP. HCM</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="item-info-box-support"><span class="icon"><img
+                                                                    src="../images/logo/location.png" alt="address"
+                                                                    class="lazy"></span>
+                                                            <div class="content-info-support">
+                                                                <p class="txt-info-sp"> Thủ Đức, TP. HCM</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </form>
+            <div class="container-products">
+                <div class="title-relateproduct">
+                  SẢN PHẨM TƯƠNG TỰ
+                </div>
+                  <div class="gird_row">
+                    <% if (relateProduct) {%>
+                      <% for (var i=0; i < relateProduct.length; i++) { %>
+                          <div class="container-products-items">
+                            <div class="container-products-items__img">
+                              <a href="/detailProduct/<%=relateProduct[i].id%>">
+                                <picture>
+                                  <img img src="http://localhost:3000/static/image/<%=relateProduct[i].thumbnail%>" alt=""
+                                    class="container-items__img-first">
+                                </picture>
+                              </a>
+                            </div>
+                            <div class="container-items-brand">
+                              <span class="brand">
+                                <%=relateProduct[i].name%>
+                              </span>
+                            </div>
+                          
+                            <div class="container-items-price">
+                                <%=relateProduct[i].price%>
+                            </div>
+                          </div>
+                        <%}%>
+                          <%}%>
+                  </div>
+              </div>
+        </div>
+        
+                
+          
+        <%- include("partials/footer") %>
+</body>
+
+</html>
